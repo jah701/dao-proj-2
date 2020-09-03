@@ -38,8 +38,11 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void updateProduct(Product product) {
-        Storage.products.stream()
-                .filter(x -> x.getName().equals(product.getName()))
-                .forEach(x -> x.setPrice(product.getPrice()));
+        for (int i = 0; i < Storage.products.size(); i++) {
+            if (product.getId().equals(Storage.products.get(i).getId())) {
+                Storage.products.set(i, product);
+                return;
+            }
+        }
     }
 }

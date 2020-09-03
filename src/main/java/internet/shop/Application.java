@@ -26,6 +26,7 @@ public class Application {
         productService.addProduct(xiaomi);
 
         Product samsung2 = new ProductDaoImpl().createProduct(new Product("Samsung", 500.00));
+        samsung2.setId(2L);
         productService.updateProduct(samsung2);
 
         System.out.println("List of all products: " + productService.getAllProducts());
