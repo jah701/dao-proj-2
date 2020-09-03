@@ -10,8 +10,8 @@ import java.util.Optional;
 @Dao
 public class ProductDaoImpl implements ProductDao {
     @Override
-    public Product createProduct(String name, Double price) {
-        return new Product(name, price);
+    public Product createProduct(Product product) {
+        return product;
     }
 
     @Override

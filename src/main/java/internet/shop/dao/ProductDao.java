@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductDao {
-    Product createProduct(String name, Double price);
+    Product createProduct(Product product);
 
     void addProduct(Product product);
 

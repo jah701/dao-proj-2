@@ -11,7 +11,7 @@ public class Application {
     public static void main(String[] args) {
         ProductService productService = (ProductService) injector.getInstance(ProductService.class);
 
-        Product iphone = new ProductDaoImpl().createProduct("iPhone", 200.00);
+        Product iphone = new ProductDaoImpl().createProduct(new Product("iPhone", 200.00));
         productService.addProduct(iphone);
 
         System.out.println(productService.getProduct(1L));
@@ -19,13 +19,13 @@ public class Application {
         boolean isRemoved = productService.removeProduct(1L);
         System.out.println("Product was removed: " + isRemoved);
 
-        Product samsung = new ProductDaoImpl().createProduct("Samsung", 100.00);
-        Product xiaomi = new ProductDaoImpl().createProduct("Xiaomi", 50.00);
+        Product samsung = new ProductDaoImpl().createProduct(new Product("Samsung", 100.00));
+        Product xiaomi = new ProductDaoImpl().createProduct(new Product("Xiaomi", 50.00));
 
         productService.addProduct(samsung);
         productService.addProduct(xiaomi);
 
-        Product samsung2 = new ProductDaoImpl().createProduct("Samsung", 500.00);
+        Product samsung2 = new ProductDaoImpl().createProduct(new Product("Samsung", 500.00));
         productService.updateProduct(samsung2);
 
         System.out.println("List of all products: " + productService.getAllProducts());
