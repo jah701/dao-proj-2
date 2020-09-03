@@ -4,7 +4,7 @@ import internet.shop.model.Product;
 import java.util.List;
 
 public interface ProductService {
-    Product createProduct(String name, Double price);
+    Product createProduct(Product product);
 
     void addProduct(Product product);
 
