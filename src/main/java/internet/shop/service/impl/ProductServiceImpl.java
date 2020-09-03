@@ -6,7 +6,6 @@ import internet.shop.lib.Service;
 import internet.shop.model.Product;
 import internet.shop.service.ProductService;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
