@@ -1,6 +1,8 @@
 package internet.shop.db;
 
+import internet.shop.model.Order;
 import internet.shop.model.Product;
+import internet.shop.model.ShoppingCart;
 import internet.shop.model.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 public class Storage {
     public static final List<Product> products = new ArrayList<>();
     public static final List<User> users = new ArrayList<>();
+    public static final List<ShoppingCart> carts = new ArrayList<>();
+    public static final List<Order> orders = new ArrayList<>();
     private static Long productId = 0L;
     private static Long orderId = 0L;
     private static Long cartId = 0L;
@@ -21,5 +25,15 @@ public class Storage {
     public static void addUser(User user) {
         user.setId(++userId);
         users.add(user);
+    }
+
+    public static void addOrder(Order order) {
+        order.setId(++orderId);
+        orders.add(order);
+    }
+
+    public static void addCart(ShoppingCart shoppingCart) {
+        shoppingCart.setId(++cartId);
+        carts.add(shoppingCart);
     }
 }

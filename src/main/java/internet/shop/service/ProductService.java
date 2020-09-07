@@ -4,15 +4,13 @@ import internet.shop.model.Product;
 import java.util.List;
 
 public interface ProductService {
-    Product createProduct(Product product);
+    Product create(Product product);
 
-    void addProduct(Product product);
+    Product get(Long id);
 
-    Product getProduct(Long id);
+    boolean remove(Long id);
 
-    boolean removeProduct(Long id);
+    List<Product> getAll();
 
-    List<Product> getAllProducts();
-
-    void updateProduct(Product product);
+    void update(Product product);
 }

@@ -5,15 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductDao {
-    Product createProduct(Product product);
+    Product create(Product product);
 
-    void addProduct(Product product);
+    Optional<Product> get(Long id);
 
-    Optional<Product> getProduct(Long id);
+    boolean remove(Long id);
 
-    boolean removeProduct(Long id);
+    List<Product> getAll();
 
-    List<Product> getAllProducts();
-
-    void updateProduct(Product product);
+    void update(Product product);
 }
