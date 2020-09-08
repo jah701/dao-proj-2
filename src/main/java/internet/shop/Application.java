@@ -47,7 +47,6 @@ public class Application {
 
         shoppingCart1.addProduct(product1);
         orderService.completeOrder(shoppingCart1);
-        shoppingCartService.clear(shoppingCart1);
         shoppingCart1.addProduct(product2);
         orderService.completeOrder(shoppingCart1);
         System.out.println(shoppingCart1);
