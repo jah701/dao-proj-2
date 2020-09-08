@@ -17,6 +17,7 @@ public class OrderServiceImpl implements OrderService {
     public Order completeOrder(ShoppingCart shoppingCart) {
         Order order = new Order(shoppingCart.getId(),
                 List.copyOf(shoppingCart.getProducts()), shoppingCart.getUserId());
+        shoppingCart.clearProducts();
         return orderDao.create(order);
     }
 
