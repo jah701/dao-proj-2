@@ -6,16 +6,11 @@ import internet.shop.lib.Service;
 import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
 import internet.shop.service.ShoppingCartService;
-import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private ShoppingCartDao shoppingCartDao;
-
-    public List<Product> getProducts(ShoppingCart shoppingCart) {
-        return shoppingCartDao.getProducts(shoppingCart);
-    }
 
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
@@ -24,12 +19,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        shoppingCart.getProducts().add(product);
-        return shoppingCart;
+        shoppingCart.addProduct(product);
+        return shoppingCartDao.update(shoppingCart);
     }
 
     @Override
-    public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
+    public ShoppingCart deleteProduct(ShoppingCart shoppingCart, Product product) {
         shoppingCart.deleteProduct(product);
         return shoppingCartDao.update(shoppingCart);
     }
@@ -41,7 +36,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart getByUserId(Long userId) {
-        return shoppingCartDao.get(userId).get();
+        return shoppingCartDao.getByUserId(userId).get();
     }
 
     @Override

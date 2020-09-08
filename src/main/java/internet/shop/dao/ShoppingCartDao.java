@@ -1,6 +1,5 @@
 package internet.shop.dao;
 
-import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +11,9 @@ public interface ShoppingCartDao {
 
     List<ShoppingCart> getAll();
 
-    boolean update(ShoppingCart shoppingCart);
+    ShoppingCart update(ShoppingCart shoppingCart);
 
-    List<Product> getProducts(ShoppingCart shoppingCart);
+    Optional<ShoppingCart> getByUserId(Long id);
 
     boolean delete(Long id);
 }
