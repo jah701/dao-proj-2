@@ -19,11 +19,11 @@ public class Application {
         final ProductService productService
                 = (ProductService) injector.getInstance(ProductService.class);
         final OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-
         User admin1 = new User("admin1", "admin1", "admin");
         User admin2 = new User("admin2", "admin2", "admin");
         User admin3 = new User("admin3", "admin3", "admin");
         User admin4 = new User("admin4", "admin4", "admin");
+
         userService.create(admin1);
         userService.create(admin2);
         userService.create(admin3);
