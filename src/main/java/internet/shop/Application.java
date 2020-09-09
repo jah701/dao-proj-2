@@ -23,10 +23,12 @@ public class Application {
         User admin2 = new User("admin2", "admin2", "admin");
         User admin3 = new User("admin3", "admin3", "admin");
         User admin4 = new User("admin4", "admin4", "admin");
+
         userService.create(admin1);
         userService.create(admin2);
         userService.create(admin3);
         userService.create(admin4);
+
         ShoppingCart shoppingCart1 = new ShoppingCart(admin1.getId());
         ShoppingCart shoppingCart2 = new ShoppingCart(admin2.getId());
         ShoppingCart shoppingCart3 = new ShoppingCart(admin3.getId());
