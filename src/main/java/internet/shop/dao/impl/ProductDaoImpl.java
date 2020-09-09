@@ -10,34 +10,30 @@ import java.util.Optional;
 @Dao
 public class ProductDaoImpl implements ProductDao {
     @Override
-    public Product createProduct(Product product) {
+    public Product create(Product product) {
+        Storage.addProduct(product);
         return product;
     }
 
     @Override
-    public void addProduct(Product product) {
-        Storage.addProduct(product);
-    }
-
-    @Override
-    public Optional<Product> getProduct(Long id) {
+    public Optional<Product> get(Long id) {
         return Storage.products.stream()
-                .filter(x -> x.getId().equals(id))
+                .filter(o -> o.getId().equals(id))
                 .findFirst();
     }
 
     @Override
-    public boolean removeProduct(Long id) {
-        return Storage.products.remove(getProduct(id).orElseThrow());
+    public boolean remove(Long id) {
+        return Storage.products.removeIf(o -> o.getId().equals(id));
     }
 
     @Override
-    public List<Product> getAllProducts() {
+    public List<Product> getAll() {
         return Storage.products;
     }
 
     @Override
-    public void updateProduct(Product product) {
+    public void update(Product product) {
         for (int i = 0; i < Storage.products.size(); i++) {
             if (product.getId().equals(Storage.products.get(i).getId())) {
                 Storage.products.set(i, product);
