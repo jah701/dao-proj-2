@@ -19,7 +19,6 @@ public class Application {
         final ProductService productService
                 = (ProductService) injector.getInstance(ProductService.class);
         final OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-
         User admin1 = new User("admin1", "admin1", "admin");
         User admin2 = new User("admin2", "admin2", "admin");
         User admin3 = new User("admin3", "admin3", "admin");
@@ -28,7 +27,6 @@ public class Application {
         userService.create(admin2);
         userService.create(admin3);
         userService.create(admin4);
-
         ShoppingCart shoppingCart1 = new ShoppingCart(admin1.getId());
         ShoppingCart shoppingCart2 = new ShoppingCart(admin2.getId());
         ShoppingCart shoppingCart3 = new ShoppingCart(admin3.getId());
