@@ -30,6 +30,5 @@
     </c:forEach>
 </table>
 <a href="${pageContext.request.contextPath}/products/all">Go back</a>
-
 </body>
 </html>

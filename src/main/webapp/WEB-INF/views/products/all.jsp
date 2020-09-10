@@ -32,6 +32,5 @@
 </table>
 <a href="${pageContext.request.contextPath}/products/create">Create product</a> <br> <br>
 <a href="${pageContext.request.contextPath}/">Go back</a> <br> <br>
-
 </body>
 </html>

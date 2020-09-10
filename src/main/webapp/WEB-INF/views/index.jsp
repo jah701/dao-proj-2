@@ -5,7 +5,6 @@
 </head>
 <body>
     <h2>HELLO WORLD!</h2>
-
     <a href="${pageContext.request.contextPath}/injectData">Inject data!</a> <br> <br>
     <a href="${pageContext.request.contextPath}/users/registration">Register</a> <br> <br>
     <a href="${pageContext.request.contextPath}/users/all">All users</a> <br> <br>

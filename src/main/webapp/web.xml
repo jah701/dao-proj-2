@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
     <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>internet.shop.controller.IndexController</servlet-class>
@@ -13,7 +12,6 @@
         <servlet-name>index</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>allUsers</servlet-name>
         <servlet-class>internet.shop.controller.user.UsersController</servlet-class>
@@ -22,7 +20,6 @@
         <servlet-name>allUsers</servlet-name>
         <url-pattern>/users/all</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>deleteUser</servlet-name>
         <servlet-class>internet.shop.controller.user.DeleteUsersController</servlet-class>
@@ -31,7 +28,6 @@
         <servlet-name>deleteUser</servlet-name>
         <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>internet.shop.controller.user.RegistrationController</servlet-class>
@@ -40,7 +36,6 @@
         <servlet-name>registration</servlet-name>
         <url-pattern>/users/registration</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>injectData</servlet-name>
         <servlet-class>internet.shop.controller.InjectDataController</servlet-class>
@@ -49,7 +44,6 @@
         <servlet-name>injectData</servlet-name>
         <url-pattern>/injectData</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>allProducts</servlet-name>
         <servlet-class>internet.shop.controller.product.ProductController</servlet-class>
@@ -58,7 +52,6 @@
         <servlet-name>allProducts</servlet-name>
         <url-pattern>/products/all</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>createProduct</servlet-name>
         <servlet-class>internet.shop.controller.product.CreateProductController</servlet-class>
@@ -67,7 +60,6 @@
         <servlet-name>createProduct</servlet-name>
         <url-pattern>/products/create</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>addProduct</servlet-name>
         <servlet-class>internet.shop.controller.product.AddProductToCartController</servlet-class>
@@ -76,7 +68,6 @@
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/products/add</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>cart</servlet-name>
         <servlet-class>internet.shop.controller.cart.ShoppingCartController</servlet-class>
@@ -85,7 +76,6 @@
         <servlet-name>cart</servlet-name>
         <url-pattern>/cart/products</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>deleteCartProduct</servlet-name>
         <servlet-class>internet.shop.controller.cart.ShoppingCartDeleteProductController</servlet-class>

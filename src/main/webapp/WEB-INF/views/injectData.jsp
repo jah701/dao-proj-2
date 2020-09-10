@@ -5,8 +5,6 @@
 </head>
 <body>
     <h4>Data was added successfully</h4>
-
     <a href="${pageContext.request.contextPath}/">Go back</a>
-
 </body>
 </html>
