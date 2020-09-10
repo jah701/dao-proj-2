@@ -1,4 +1,4 @@
-package internet.shop.controller.prouct;
+package internet.shop.controller.product;
 
 import internet.shop.lib.Injector;
 import internet.shop.model.Product;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddProductController extends HttpServlet {
+public class AddProductToCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("internet.shop");
     private static ProductService productService

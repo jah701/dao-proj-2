@@ -38,7 +38,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
-        <url-pattern>/registration</url-pattern>
+        <url-pattern>/users/registration</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -52,7 +52,7 @@
 
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>internet.shop.controller.prouct.ProductController</servlet-class>
+        <servlet-class>internet.shop.controller.product.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allProducts</servlet-name>
@@ -61,7 +61,7 @@
 
     <servlet>
         <servlet-name>createProduct</servlet-name>
-        <servlet-class>internet.shop.controller.prouct.CreateProductController</servlet-class>
+        <servlet-class>internet.shop.controller.product.CreateProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createProduct</servlet-name>
@@ -70,7 +70,7 @@
 
     <servlet>
         <servlet-name>addProduct</servlet-name>
-        <servlet-class>internet.shop.controller.prouct.AddProductController</servlet-class>
+        <servlet-class>internet.shop.controller.product.AddProductToCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
