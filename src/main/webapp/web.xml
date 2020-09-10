@@ -69,11 +69,11 @@
         <url-pattern>/products/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>cart</servlet-name>
+        <servlet-name>cartProducts</servlet-name>
         <servlet-class>internet.shop.controller.cart.GetShoppingCartProductsController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>cart</servlet-name>
+        <servlet-name>cartProducts</servlet-name>
         <url-pattern>/shopping-cart/products</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -82,6 +82,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteCartProduct</servlet-name>
-        <url-pattern>/shopping-cart/delete</url-pattern>
+        <url-pattern>/shopping-cart/products/delete</url-pattern>
     </servlet-mapping>
 </web-app>
