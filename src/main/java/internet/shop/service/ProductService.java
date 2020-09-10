@@ -8,7 +8,7 @@ public interface ProductService {
 
     Product get(Long id);
 
-    boolean remove(Long id);
+    boolean delete(Long id);
 
     List<Product> getAll();
 
