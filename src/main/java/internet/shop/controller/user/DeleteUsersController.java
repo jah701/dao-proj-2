@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteUsersController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("internet.shop");
-    private static UserService userService
+    private UserService userService
             = (UserService) injector.getInstance(UserService.class);
-    private static ShoppingCartService shoppingCartService
+    private ShoppingCartService shoppingCartService
             = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
 
     @Override
