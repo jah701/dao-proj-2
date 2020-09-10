@@ -10,6 +10,6 @@
     <a href="${pageContext.request.contextPath}/users/all">All users</a> <br> <br>
     <a href="${pageContext.request.contextPath}/products/all">All products</a> <br> <br>
     <a href="${pageContext.request.contextPath}/products/create">Add products</a> <br> <br>
-    <a href="${pageContext.request.contextPath}/cart/products">Shopping cart</a> <br> <br>
+    <a href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a> <br> <br>
 </body>
 </html>

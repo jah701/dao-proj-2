@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DeleteUsersController extends HttpServlet {
+    private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("internet.shop");
     private static UserService userService
             = (UserService) injector.getInstance(UserService.class);
@@ -21,8 +22,8 @@ public class DeleteUsersController extends HttpServlet {
             throws ServletException, IOException {
         String id = req.getParameter("id");
         Long longId = Long.valueOf(id);
-        userService.delete(longId);
-        shoppingCartService.delete(longId);
+        userService.delete(USER_ID);
+        shoppingCartService.delete(USER_ID);
         resp.sendRedirect(req.getContextPath() + "/users/all");
     }
 }
