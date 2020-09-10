@@ -58,15 +58,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>createProduct</servlet-name>
-        <url-pattern>/products/create</url-pattern>
+        <url-pattern>/products/add</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>addProduct</servlet-name>
+        <servlet-name>addProductToCart</servlet-name>
         <servlet-class>internet.shop.controller.product.AddProductToCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addProduct</servlet-name>
-        <url-pattern>/products/add</url-pattern>
+        <servlet-name>addProductToCart</servlet-name>
+        <url-pattern>/shopping-cart/products/add</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>cartProducts</servlet-name>

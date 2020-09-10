@@ -5,9 +5,8 @@
 </head>
 <body>
 <h3 style="color:red">${errMessage}</h3>
-<h3 style="color:green">${successMessage}</h3>
 
-<form method="post" action="${pageContext.request.contextPath}/products/create">
+<form method="post" action="${pageContext.request.contextPath}/products/add">
     Product name: <input type="text" name="product-name"> <br>
     Product price: <input type="text" name="product-price"> <br> <br>
 
