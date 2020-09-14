@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AccessAllProductsController extends HttpServlet {
+public class ManageAllProductsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("internet.shop");
     private ProductService productService
             = (ProductService) injector.getInstance(ProductService.class);
@@ -20,6 +20,6 @@ public class AccessAllProductsController extends HttpServlet {
             throws ServletException, IOException {
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("/WEB-INF/views/products/delete.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/manage.jsp").forward(req, resp);
     }
 }

@@ -51,11 +51,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>injectData</servlet-name>
+        <servlet-name>inject-data</servlet-name>
         <servlet-class>internet.shop.controller.InjectDataController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>injectData</servlet-name>
+        <servlet-name>inject-data</servlet-name>
         <url-pattern>/injectData</url-pattern>
     </servlet-mapping>
 
@@ -79,11 +79,11 @@
 
     <servlet>
         <servlet-name>requestProduct</servlet-name>
-        <servlet-class>internet.shop.controller.product.AccessAllProductsController</servlet-class>
+        <servlet-class>internet.shop.controller.product.ManageAllProductsController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>requestProduct</servlet-name>
-        <url-pattern>/admin/products/access</url-pattern>
+        <url-pattern>/products/manage</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -128,7 +128,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allOrders</servlet-name>
-        <url-pattern>/admin/orders/all</url-pattern>
+        <url-pattern>/orders/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
