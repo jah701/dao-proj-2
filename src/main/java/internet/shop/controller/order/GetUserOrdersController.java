@@ -17,9 +17,6 @@ public class GetUserOrdersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("internet.shop");
     private OrderService orderService
             = (OrderService) injector.getInstance(OrderService.class);
-    private ShoppingCartService shoppingCartService
-            = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

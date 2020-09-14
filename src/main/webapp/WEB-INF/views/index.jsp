@@ -14,8 +14,8 @@
     <h4>Admin menu</h4>
     <a href="${pageContext.request.contextPath}/users/all">All users</a> <br>
     <a href="${pageContext.request.contextPath}/products/add">Add product</a> <br>
-    <a href="${pageContext.request.contextPath}/admin/orders/all">All orders</a> <br>
-    <a href="${pageContext.request.contextPath}/injectData">Inject data!</a> <br>
-    <a href="${pageContext.request.contextPath}/admin/products/access">Delete product</a> <br>
+    <a href="${pageContext.request.contextPath}/orders/all">All orders</a> <br>
+    <a href="${pageContext.request.contextPath}/inject-data">Inject data!</a> <br>
+    <a href="${pageContext.request.contextPath}/products/manage">Delete product</a> <br>
 </body>
 </html>
