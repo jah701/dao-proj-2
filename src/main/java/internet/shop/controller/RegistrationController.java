@@ -30,7 +30,6 @@ public class RegistrationController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("pass");
         String passwordRepeat = req.getParameter("pass-repeat");
-
         if (password.equals(passwordRepeat)) {
             User user = userService.create(new User(name, login, password));
             shoppingCartService.create(new ShoppingCart(user.getId()));
