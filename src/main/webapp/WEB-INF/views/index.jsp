@@ -16,7 +16,7 @@
     <h3>Admin menu</h3>
     <a href="${pageContext.request.contextPath}/products/add">Add product</a> <br>
     <a href="${pageContext.request.contextPath}/orders/all">All orders</a> <br>
-    <a href="${pageContext.request.contextPath}/injectData">Inject data!</a> <br>
+    <a href="${pageContext.request.contextPath}/inject-data">Inject data!</a> <br>
     <a href="${pageContext.request.contextPath}/products/manage">Delete product</a> <br>
 </body>
 </html>

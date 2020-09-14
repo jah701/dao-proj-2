@@ -22,9 +22,9 @@ public class ShoppingCartDeleteProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("id");
-        Long longId = Long.valueOf(id);
+        Long productId = Long.valueOf(id);
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
-        shoppingCartService.deleteProduct(shoppingCart, productService.get(longId));
+        shoppingCartService.deleteProduct(shoppingCart, productService.get(productId));
         resp.sendRedirect(req.getContextPath() + "/shopping-cart/products");
     }
 }
