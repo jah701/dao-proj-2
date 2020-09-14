@@ -12,6 +12,7 @@
     Enter your password: <input type="password" name="pass"> <br/><br/>
     Repeat your password: <input type="password" name="pass-repeat"> <br/><br/>
     <button type="submit">Register</button>
-</form>
+</form> <br/> <br/>
+<a href="${pageContext.request.contextPath}/login">Login</a>
 </body>
 </html>

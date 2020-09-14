@@ -21,10 +21,8 @@ public class InjectDataController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         User bob = userService.create(new User("bob"));
-
         ShoppingCart shoppingCart1 = new ShoppingCart(bob.getId());
         shoppingCartService.create(shoppingCart1);
-
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);
     }
 }

@@ -19,7 +19,6 @@ public class GetOrderDetailsController extends HttpServlet {
         Long id = Long.parseLong(req.getParameter("id"));
         Order order = orderService.get(id);
         req.setAttribute("order", order);
-
         req.getRequestDispatcher("/WEB-INF/views/orders/order-details.jsp").forward(req, resp);
     }
 }
