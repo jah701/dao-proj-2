@@ -41,11 +41,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>injectData</servlet-name>
+        <servlet-name>inject-data</servlet-name>
         <servlet-class>internet.shop.controller.InjectDataController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>injectData</servlet-name>
+        <servlet-name>inject-data</servlet-name>
         <url-pattern>/inject-data</url-pattern>
     </servlet-mapping>
 
