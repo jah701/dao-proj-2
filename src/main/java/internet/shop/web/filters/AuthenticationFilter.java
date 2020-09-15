@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final Injector injector = Injector.getInstance("internet.shop");
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
+    private UserService userService
+            = (UserService) injector.getInstance(UserService.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -42,6 +42,5 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }
