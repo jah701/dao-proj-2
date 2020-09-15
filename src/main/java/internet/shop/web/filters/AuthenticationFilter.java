@@ -2,7 +2,6 @@ package internet.shop.web.filters;
 
 import internet.shop.lib.Injector;
 import internet.shop.service.UserService;
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

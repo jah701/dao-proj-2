@@ -8,9 +8,10 @@ import internet.shop.service.UserService;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
+    private static final String errMsg = "Incorrect username or password";
+
     @Inject
     private UserService userService;
-    private static final String errMsg = "Incorrect username or password";
 
     @Override
     public User login(String login, String password) throws AuthenticationException {
