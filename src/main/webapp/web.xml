@@ -48,7 +48,7 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-
+  
     <servlet>
         <servlet-name>inject-data</servlet-name>
         <servlet-class>internet.shop.controller.InjectDataController</servlet-class>
@@ -145,7 +145,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteOrder</servlet-name>
-        <url-pattern>/admin/orders/delete</url-pattern>
+        <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
