@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "user_id";
     private static final Injector injector = Injector.getInstance("internet.shop");
     private AuthenticationService authenticationService
             = (AuthenticationService) injector.getInstance(AuthenticationService.class);
@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
         try {
             User user = authenticationService.login(login, password);
             HttpSession session = req.getSession();
-            session.setAttribute("user_id", USER_ID);
+            session.setAttribute("user_id", user.getId());
         } catch (AuthenticationException e) {
             req.setAttribute("errMsg", e.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/users/login.jsp").forward(req, resp);
