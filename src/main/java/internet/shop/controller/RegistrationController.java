@@ -1,4 +1,4 @@
-package internet.shop.controller.user;
+package internet.shop.controller;
 
 import internet.shop.lib.Injector;
 import internet.shop.model.ShoppingCart;
@@ -30,7 +30,6 @@ public class RegistrationController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("pass");
         String passwordRepeat = req.getParameter("pass-repeat");
-
         if (password.equals(passwordRepeat)) {
             User user = userService.create(new User(name, login, password));
             shoppingCartService.create(new ShoppingCart(user.getId()));
