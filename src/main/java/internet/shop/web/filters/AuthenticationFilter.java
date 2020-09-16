@@ -36,10 +36,11 @@ public class AuthenticationFilter implements Filter {
         }
 
         Long userId = (Long) req.getSession().getAttribute(LoginController.USER_ID);
-        if (userId == null || userService.get(userId) == null) {
+        if (userId == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
+
         filterChain.doFilter(req, resp);
     }
 
