@@ -11,8 +11,8 @@
     <a href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a> <br>
     <a href="${pageContext.request.contextPath}/products/all">All products</a> <br>
     <a href="${pageContext.request.contextPath}/user/orders/all">All orders</a> <br>
-    <h4>Admin menu</h4>
     <a href="${pageContext.request.contextPath}/users/all">All users</a> <br>
+    <h4>Admin menu</h4>
     <a href="${pageContext.request.contextPath}/products/add">Add product</a> <br>
     <a href="${pageContext.request.contextPath}/orders/all">All orders</a> <br>
     <a href="${pageContext.request.contextPath}/inject-data">Inject data!</a> <br>
