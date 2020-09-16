@@ -27,11 +27,18 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         protectedUrls.put("/users/all", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/users/delete", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/orders/all", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/orders/delete", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/add", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/products/delete", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/manage", Set.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/shopping-cart/complete-order", Set.of(Role.RoleName.USER));
         protectedUrls.put("/user/orders/all", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/order/details", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/shopping-cart/products", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/shopping-cart/products/add", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/shopping-cart/products/delete", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/shopping-cart/complete-order", Set.of(Role.RoleName.USER));
     }
 
     @Override
@@ -42,14 +49,10 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         String requestedUrl = req.getServletPath();
-        if (protectedUrls.get(requestedUrl) == null) {
-            filterChain.doFilter(req, resp);
-            return;
-        }
 
         Long userId = (Long) req.getSession().getAttribute(LoginController.USER_ID);
-        User user = userService.get(userId);
-        if (isAuthorized(user, protectedUrls.get(requestedUrl))) {
+        if (!protectedUrls.containsKey(requestedUrl)
+                || isAuthorized(userService.get(userId), protectedUrls.get(requestedUrl))) {
             filterChain.doFilter(req, resp);
         } else {
             req.getRequestDispatcher("/WEB-INF/views/access-denied.jsp").forward(req, resp);
@@ -58,7 +61,6 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
     private boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {
