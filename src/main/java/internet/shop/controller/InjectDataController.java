@@ -1,11 +1,12 @@
 package internet.shop.controller;
 
 import internet.shop.lib.Injector;
-import internet.shop.model.ShoppingCart;
+import internet.shop.model.Role;
 import internet.shop.model.User;
 import internet.shop.service.ShoppingCartService;
 import internet.shop.service.UserService;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +21,10 @@ public class InjectDataController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        User bob = userService.create(new User("bob"));
-        ShoppingCart shoppingCart1 = new ShoppingCart(bob.getId());
-        shoppingCartService.create(shoppingCart1);
+
+        User admin = userService.create(new User("admin", "admin", "admin"));
+        admin.setRoles(Set.of(Role.of("ADMIN")));
+
         req.getRequestDispatcher("/WEB-INF/views/inject-data.jsp").forward(req, resp);
     }
 }

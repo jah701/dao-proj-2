@@ -15,7 +15,7 @@
                 <td>${order.id}</td>
                 <td>${order.userId}</td>
                 <td><a href="${pageContext.request.contextPath}/order/details?id=${order.id}">Details</a></td>
-                <td><a href="${pageContext.request.contextPath}/admin/orders/delete?id=${order.id}">Delete</a></td>
+                <td><a href="${pageContext.request.contextPath}/orders/delete?id=${order.id}">Delete</a></td>
             </tr>
     </table>
 </c:forEach> <br>
