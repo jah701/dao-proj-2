@@ -26,6 +26,5 @@ public class ConnectionUtil {
         } catch (SQLException e) {
             throw new RuntimeException("Can't establish connection", e);
         }
-
     }
 }
