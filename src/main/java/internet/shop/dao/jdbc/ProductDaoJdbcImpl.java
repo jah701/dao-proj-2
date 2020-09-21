@@ -75,8 +75,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE products SET name = ?, price = ? WHERE product_id = ?;");
             statement.setString(1, object.getName());
-            statement.setString(2, String.valueOf(object.getPrice()));
-            statement.setString(3, String.valueOf(object.getId()));
+            statement.setDouble(2, object.getPrice());
+            statement.setLong(3, object.getId());
             statement.executeUpdate();
             return object;
         } catch (SQLException e) {
