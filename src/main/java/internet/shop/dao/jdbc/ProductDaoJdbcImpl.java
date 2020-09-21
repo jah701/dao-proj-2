@@ -40,7 +40,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         Product product;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM products WHERE product_id = ?;");
+                    "SELECT * FROM products WHERE deleted = false AND product_id = ?;");
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
