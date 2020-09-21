@@ -1,6 +1,7 @@
 package internet.shop.dao.jdbc;
 
 import internet.shop.dao.ProductDao;
+import internet.shop.exceptions.DataProcessingException;
 import internet.shop.lib.Dao;
 import internet.shop.model.Product;
 import internet.shop.util.ConnectionUtil;
@@ -19,7 +20,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product create(Product object) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO products(name, price) VALUES (?, ?)",
+                    "INSERT INTO products(name, price) VALUES (?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, object.getName());
             statement.setDouble(2, object.getPrice());
@@ -30,7 +31,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return object;
         } catch (SQLException e) {
-            throw new RuntimeException("Can't create product", e);
+            throw new DataProcessingException("Can't create product", e);
         }
     }
 
@@ -39,14 +40,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
         Product product = null;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM products WHERE deleted = 0 AND product_id = ?");
+                    "SELECT * FROM products WHERE product_id = ?;");
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 product = getProductFromResultSet(rs);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Can't get the product", e);
+            throw new DataProcessingException("Can't get the product", e);
         }
         return Optional.ofNullable(product);
     }
@@ -56,7 +57,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM products WHERE deleted = 0");
+                    "SELECT * FROM products WHERE deleted = 0;");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = getProductFromResultSet(rs);
@@ -64,7 +65,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Can't get all products list", e);
+            throw new DataProcessingException("Can't get all products list", e);
         }
         return products;
     }
@@ -73,14 +74,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product update(Product object) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET name = ?, price = ? WHERE product_id = ?");
+                    "UPDATE products SET name = ?, price = ? WHERE product_id = ?;");
             statement.setString(1, object.getName());
             statement.setString(2, String.valueOf(object.getPrice()));
             statement.setString(3, String.valueOf(object.getId()));
             statement.executeUpdate();
             return object;
         } catch (SQLException e) {
-            throw new RuntimeException("Can't update product", e);
+            throw new DataProcessingException("Can't update product", e);
         }
     }
 
@@ -88,12 +89,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public boolean delete(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET deleted = 1 WHERE product_id = ?");
+                    "UPDATE products SET deleted = 1 WHERE product_id = ?;");
             statement.setString(1, String.valueOf(id));
             int i = statement.executeUpdate();
             return i == 1;
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't delete product with ID = " + id, e);
+            throw new DataProcessingException("Couldn't delete product with ID = " + id, e);
         }
     }
 
