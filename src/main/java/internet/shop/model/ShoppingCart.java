@@ -9,9 +9,26 @@ public class ShoppingCart {
     private List<Product> products;
     private Long userId;
 
+    public ShoppingCart() {
+    }
+
     public ShoppingCart(Long userId) {
         this.userId = userId;
+        this.id = userId;
         this.products = new ArrayList<>();
+    }
+
+    public ShoppingCart(Long id, Long userId) {
+        this.id = id;
+        this.userId = userId;
+        this.products = new ArrayList<>();
+    }
+
+    public ShoppingCart(Long id, List<Product> products, Long userId) {
+        this.id = id;
+        this.products = products;
+        this.userId = userId;
+
     }
 
     public Long getId() {
@@ -40,11 +57,5 @@ public class ShoppingCart {
 
     public Long getUserId() {
         return userId;
-    }
-
-    @Override
-    public String toString() {
-        return "- SHOPPING CART INFO -\nid: " + id + "\nContent: " + products.toString()
-                + "\nCustomer id: " + userId + "\n\n";
     }
 }

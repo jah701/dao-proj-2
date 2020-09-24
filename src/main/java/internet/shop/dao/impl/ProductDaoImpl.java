@@ -2,12 +2,10 @@ package internet.shop.dao.impl;
 
 import internet.shop.dao.ProductDao;
 import internet.shop.db.Storage;
-import internet.shop.lib.Dao;
 import internet.shop.model.Product;
 import java.util.List;
 import java.util.Optional;
 
-@Dao
 public class ProductDaoImpl implements ProductDao {
     @Override
     public Product create(Product product) {

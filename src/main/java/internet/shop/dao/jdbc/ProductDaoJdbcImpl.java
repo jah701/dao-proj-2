@@ -20,7 +20,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product create(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO products(name, price) VALUES (?, ?);",
+                    "INSERT INTO products(productName, productPrice) VALUES (?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -74,7 +74,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET name = ?, price = ? "
+                    "UPDATE products SET productName = ?, productPrice = ? "
                             + "WHERE deleted = false AND product_id = ?;");
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -100,8 +100,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Long productId = resultSet.getLong("product_id");
-        String productName = resultSet.getString("name");
-        Double productPrice = resultSet.getDouble("price");
+        String productName = resultSet.getString("productName");
+        Double productPrice = resultSet.getDouble("productPrice");
         return new Product(productId, productName, productPrice);
     }
 }
