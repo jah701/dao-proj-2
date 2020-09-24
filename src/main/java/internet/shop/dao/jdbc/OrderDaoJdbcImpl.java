@@ -163,7 +163,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private void clearShoppingCart(Long userId, Connection connection) {
-        String query = "DELETE FROM shopping_carts_products WHERE user_id = ?;";
+        String query = "DELETE FROM shopping_carts_products WHERE shopping_cart_id = ?;";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             statement.executeUpdate();
