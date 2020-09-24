@@ -1,7 +1,6 @@
 package internet.shop.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShoppingCart {
@@ -10,6 +9,7 @@ public class ShoppingCart {
     private Long userId;
 
     public ShoppingCart() {
+        products = new ArrayList<>();
     }
 
     public ShoppingCart(Long userId) {
@@ -47,8 +47,10 @@ public class ShoppingCart {
         this.products = new ArrayList<>();
     }
 
-    public void addProduct(Product...productsArgs) {
-        this.products.addAll(Arrays.asList(productsArgs));
+    public void addProduct(List<Product> products) {
+        for (Product product : products) {
+            this.products.add(product);
+        }
     }
 
     public boolean deleteProduct(Product product) {

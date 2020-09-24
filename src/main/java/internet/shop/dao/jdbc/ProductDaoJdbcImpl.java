@@ -72,10 +72,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET productName = ?, productPrice = ? "
-                            + "WHERE deleted = false AND product_id = ?;");
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        "UPDATE products SET productName = ?, productPrice = ? "
+                            + "WHERE deleted = false AND product_id = ?;")) {
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.setLong(3, product.getId());
@@ -88,9 +88,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE products SET deleted = true WHERE product_id = ? AND deleted = false");
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(
+                        "UPDATE products SET deleted "
+                                + "= true WHERE product_id = ? AND deleted = false")) {
             statement.setLong(1, id);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
@@ -100,8 +101,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Long productId = resultSet.getLong("product_id");
-        String productName = resultSet.getString("productName");
-        Double productPrice = resultSet.getDouble("productPrice");
+        String productName = resultSet.getString("product_name");
+        Double productPrice = resultSet.getDouble("product_price");
         return new Product(productId, productName, productPrice);
     }
 }
