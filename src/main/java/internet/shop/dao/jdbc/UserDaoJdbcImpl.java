@@ -40,7 +40,7 @@ public class UserDaoJdbcImpl implements UserDao {
     public User create(User user) {
         String query = "INSERT INTO users(login, username, password) VALUES (?, ?, ?);";
         try (Connection connection = ConnectionUtil.getConnection()) {
-                PreparedStatement statement = connection.prepareStatement(
+            PreparedStatement statement = connection.prepareStatement(
                         query, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getName());
@@ -63,7 +63,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 + "WHERE u.deleted = false AND u.user_id = ?;";
         User user = null;
         try (Connection connection = ConnectionUtil.getConnection()) {
-                PreparedStatement statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
