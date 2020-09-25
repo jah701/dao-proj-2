@@ -25,8 +25,9 @@ public class UserDaoJdbcImpl implements UserDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 User user = getUserFromResultSet(resultSet);
+                statement.close();
                 user.setRoles(getUserRoles(user.getId(), connection));
                 return Optional.of(user);
             }
@@ -50,6 +51,7 @@ public class UserDaoJdbcImpl implements UserDao {
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(1));
             }
+            statement.close();
             return addRole(user, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create new user", e);
@@ -69,6 +71,7 @@ public class UserDaoJdbcImpl implements UserDao {
             if (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
             }
+            statement.close();
             user.setRoles(getUserRoles(userId, connection));
         } catch (SQLException e) {
             throw new DataProcessingException("Can't find user with id: " + userId, e);
@@ -104,6 +107,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(3, user.getPassword());
             statement.setLong(4, user.getId());
             statement.executeUpdate();
+            statement.close();
             clearRoles(user, connection);
             addRole(user, connection);
         } catch (SQLException e) {

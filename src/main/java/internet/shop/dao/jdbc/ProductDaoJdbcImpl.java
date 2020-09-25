@@ -25,9 +25,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next()) {
-                product.setId(rs.getLong(1));
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                product.setId(resultSet.getLong(1));
             }
             return product;
         } catch (SQLException e) {
@@ -42,9 +42,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                product = getProductFromResultSet(rs);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                product = getProductFromResultSet(resultSet);
                 return Optional.of(product);
             }
         } catch (SQLException e) {
@@ -59,9 +59,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                Product product = getProductFromResultSet(rs);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = getProductFromResultSet(resultSet);
                 products.add(product);
             }
         } catch (SQLException e) {

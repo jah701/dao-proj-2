@@ -28,8 +28,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 order = getOrderFromResultSet(resultSet);
-                order.setProducts(getProductsFromOrder(order.getId(), connection));
                 orders.add(order);
+            }
+            statement.close();
+            for (Order ord : orders) {
+                ord.setProducts(getProductsFromOrder(ord.getId(), connection));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get orders with user id: " + id, e);
@@ -49,6 +52,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             if (resultSet.next()) {
                 order.setId(resultSet.getLong(1));
             }
+            statement.close();
             clearShoppingCart(order.getUserId(), connection);
             return addProductsToOrder(order, connection);
         } catch (SQLException e) {
@@ -67,6 +71,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             if (resultSet.next()) {
                 order = getOrderFromResultSet(resultSet);
             }
+            statement.close();
             order.setProducts(getProductsFromOrder(order.getId(), connection));
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get order with id: " + id, e);
@@ -84,8 +89,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 order = getOrderFromResultSet(resultSet);
-                order.setProducts(getProductsFromOrder(order.getId(), connection));
                 orders.add(order);
+            }
+            for (Order ord : orders) {
+                ord.setProducts(getProductsFromOrder(ord.getId(), connection));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get all orders list", e);
@@ -101,6 +108,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                         query);
             statement.setLong(1, order.getId());
             statement.executeUpdate();
+            statement.close();
             return addProductsToOrder(order, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update order", e);
