@@ -53,7 +53,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 order.setId(resultSet.getLong(1));
             }
             statement.close();
-            clearShoppingCart(order.getUserId(), connection);
             return addProductsToOrder(order, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create order", e);
@@ -76,7 +75,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get order with id: " + id, e);
         }
-        return Optional.of(order);
+        return Optional.ofNullable(order);
     }
 
     @Override
@@ -168,16 +167,5 @@ public class OrderDaoJdbcImpl implements OrderDao {
         Long orderId = rs.getLong("order_id");
         Long userId = rs.getLong("user_id");
         return new Order(orderId, userId);
-    }
-
-    private void clearShoppingCart(Long userId, Connection connection) {
-        String query = "DELETE FROM shopping_carts_products WHERE shopping_cart_id = ?;";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setLong(1, userId);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DataProcessingException("Can't clear shopping cart for user with id:"
-                    + userId, e);
-        }
     }
 }

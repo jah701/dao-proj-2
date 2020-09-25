@@ -102,8 +102,6 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                         = connection.prepareStatement(query);
             statement.setLong(1, shoppingCart.getId());
             statement.executeUpdate();
-            statement.close();
-            addProductsToCart(shoppingCart, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update shopping cart", e);
         }
