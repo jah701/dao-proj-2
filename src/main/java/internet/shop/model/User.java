@@ -44,7 +44,6 @@ public class User {
         this.login = login;
         this.password = password;
         this.salt = salt;
-        this.roles = roles;
     }
 
     public Long getId() {
