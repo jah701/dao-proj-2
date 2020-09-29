@@ -40,7 +40,6 @@ public class AuthenticationFilter implements Filter {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
-
         filterChain.doFilter(req, resp);
     }
 

@@ -2,12 +2,10 @@ package internet.shop.dao.impl;
 
 import internet.shop.dao.ShoppingCartDao;
 import internet.shop.db.Storage;
-import internet.shop.lib.Dao;
 import internet.shop.model.ShoppingCart;
 import java.util.List;
 import java.util.Optional;
 
-@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {

@@ -23,9 +23,9 @@ public class AddProductToCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("id");
-        Long longId = Long.valueOf(id);
+        Long productId = Long.valueOf(id);
         Long userId = (Long) req.getSession().getAttribute(LoginController.USER_ID);
-        Product product = productService.get(longId);
+        Product product = productService.get(productId);
         ShoppingCart cart = shoppingCartService.getByUserId(userId);
         shoppingCartService.addProduct(cart, product);
         resp.sendRedirect(req.getContextPath() + "/shopping-cart/products");
