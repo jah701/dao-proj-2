@@ -48,9 +48,7 @@ public class ShoppingCart {
     }
 
     public void addProduct(List<Product> products) {
-        for (Product product : products) {
-            this.products.add(product);
-        }
+        this.products.addAll(products);
     }
 
     public boolean deleteProduct(Product product) {

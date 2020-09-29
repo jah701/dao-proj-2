@@ -76,7 +76,7 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't find user with id: " + userId, e);
         }
-        return Optional.of(user);
+        return Optional.ofNullable(user);
     }
 
     @Override
@@ -166,11 +166,11 @@ public class UserDaoJdbcImpl implements UserDao {
                 + "ON ur.role_id = r.role_id WHERE ur.user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
-            ResultSet rs = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
             Set<Role> roles = new HashSet<>();
-            while (rs.next()) {
-                Long roleId = rs.getLong("role_id");
-                String roleName = rs.getString("role_name");
+            while (resultSet.next()) {
+                Long roleId = resultSet.getLong("role_id");
+                String roleName = resultSet.getString("role_name");
                 Role role = Role.of(roleName);
                 role.setId(roleId);
                 roles.add(role);

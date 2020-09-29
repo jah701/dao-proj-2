@@ -44,14 +44,15 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public Order create(Order order) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                        "INSERT INTO orders(user_id) VALUES (?)",
-                        Statement.RETURN_GENERATED_KEYS);
+                            "INSERT INTO orders(user_id) VALUES (?)",
+                            Statement.RETURN_GENERATED_KEYS);
             statement.setLong(1, order.getUserId());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 order.setId(resultSet.getLong(1));
             }
+            clearShoppingCart(order.getUserId(), connection);
             statement.close();
             return addProductsToOrder(order, connection);
         } catch (SQLException e) {
@@ -64,7 +65,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         Order order = null;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                        "SELECT * FROM orders WHERE deleted = false AND order_id = ?;");
+                            "SELECT * FROM orders WHERE deleted = false AND order_id = ?;");
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -84,14 +85,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
         Order order;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                        "SELECT * FROM orders WHERE deleted = false;");
+                            "SELECT * FROM orders WHERE deleted = false;");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 order = getOrderFromResultSet(resultSet);
+                statement.close();
+                order.setProducts(getProductsFromOrder(order.getId(), connection));
                 orders.add(order);
-            }
-            for (Order ord : orders) {
-                ord.setProducts(getProductsFromOrder(ord.getId(), connection));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get all orders list", e);
@@ -104,7 +104,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         String query = "DELETE FROM orders_products WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                        query);
+                            query);
             statement.setLong(1, order.getId());
             statement.executeUpdate();
             statement.close();
@@ -117,9 +117,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public boolean delete(Long id) {
         String query = "UPDATE orders SET deleted = true WHERE order_id = ?;";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(
-                        query);
+        try (Connection connection = ConnectionUtil.getConnection();
+                    PreparedStatement statement = connection.prepareStatement(
+                            query)) {
             statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private Order addProductsToOrder(Order order, Connection connection) {
         String query = "INSERT INTO orders_products(order_id, product_id) VALUES(?, ?);";
         try (PreparedStatement statement = connection.prepareStatement(
-                    query)) {
+                query)) {
             statement.setLong(1, order.getId());
             for (int i = 0; i < order.getProducts().size(); i++) {
                 statement.setLong(2, order.getProducts().get(i).getId());
@@ -167,5 +167,16 @@ public class OrderDaoJdbcImpl implements OrderDao {
         Long orderId = rs.getLong("order_id");
         Long userId = rs.getLong("user_id");
         return new Order(orderId, userId);
+    }
+
+    private void clearShoppingCart(Long userId, Connection connection) {
+        String query = "DELETE FROM shopping_carts_products WHERE shopping_cart_id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't clear shopping cart for user with id:"
+                    + userId, e);
+        }
     }
 }
