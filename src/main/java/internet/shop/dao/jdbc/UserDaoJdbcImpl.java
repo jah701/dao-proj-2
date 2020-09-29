@@ -21,8 +21,8 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) {
         String query = "SELECT * FROM users WHERE login = ? AND deleted = false;";
-        try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -99,9 +99,9 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User update(User user) {
         String query = "UPDATE users SET login = ?, username = ?, password = ? "
-                + "WHERE deleted = false AND user_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+                + "WHERE deleted = false AND user_id = ?;";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getName());
             statement.setString(3, user.getPassword());
@@ -118,7 +118,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public boolean delete(Long userId) {
-        String query = "UPDATE users SET deleted = true WHERE user_id = ?";
+        String query = "UPDATE users SET deleted = true WHERE user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
@@ -163,7 +163,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     private Set<Role> getUserRoles(Long userId, Connection connection) {
         String query = "SELECT r.role_id, role_name FROM roles r INNER JOIN users_roles ur "
-                + "ON ur.role_id = r.role_id WHERE ur.user_id = ?";
+                + "ON ur.role_id = r.role_id WHERE ur.user_id = ?;";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
