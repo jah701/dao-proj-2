@@ -6,7 +6,6 @@ import internet.shop.lib.Service;
 import internet.shop.model.User;
 import internet.shop.service.UserService;
 import internet.shop.util.HashUtil;
-
 import java.util.Optional;
 
 @Service
