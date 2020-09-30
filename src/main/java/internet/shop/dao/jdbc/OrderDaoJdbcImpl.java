@@ -20,14 +20,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getUserOrders(Long id) {
         List<Order> orders = new ArrayList<>();
-        Order order;
         String query = "SELECT * FROM orders WHERE deleted = false AND user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                order = getOrderFromResultSet(resultSet);
+                Order order = getOrderFromResultSet(resultSet);
                 orders.add(order);
             }
             statement.close();
@@ -81,16 +80,17 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
-        Order order;
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
                             "SELECT * FROM orders WHERE deleted = false;");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                order = getOrderFromResultSet(resultSet);
-                statement.close();
-                order.setProducts(getProductsFromOrder(order.getId(), connection));
+                Order order = getOrderFromResultSet(resultSet);
                 orders.add(order);
+            }
+            statement.close();
+            for (Order order : orders) {
+                order.setProducts(getProductsFromOrder(order.getId(), connection));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get all orders list", e);
@@ -117,8 +117,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public boolean delete(Long id) {
         String query = "UPDATE orders SET deleted = true WHERE order_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
-                    PreparedStatement statement = connection.prepareStatement(
-                            query)) {
+                    PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
