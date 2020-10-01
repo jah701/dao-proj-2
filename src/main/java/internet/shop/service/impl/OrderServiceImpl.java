@@ -1,6 +1,7 @@
 package internet.shop.service.impl;
 
 import internet.shop.dao.OrderDao;
+import internet.shop.dao.ShoppingCartDao;
 import internet.shop.lib.Inject;
 import internet.shop.lib.Service;
 import internet.shop.model.Order;
@@ -13,11 +14,15 @@ public class OrderServiceImpl implements OrderService {
     @Inject
     private OrderDao orderDao;
 
+    @Inject
+    private ShoppingCartDao shoppingCartDao;
+
     @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
         Order order = new Order(shoppingCart.getId(),
                 List.copyOf(shoppingCart.getProducts()), shoppingCart.getUserId());
         shoppingCart.clearProducts();
+        shoppingCartDao.update(shoppingCart);
         return orderDao.create(order);
     }
 

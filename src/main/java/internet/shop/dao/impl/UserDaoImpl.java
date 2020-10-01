@@ -2,12 +2,10 @@ package internet.shop.dao.impl;
 
 import internet.shop.dao.UserDao;
 import internet.shop.db.Storage;
-import internet.shop.lib.Dao;
 import internet.shop.model.User;
 import java.util.List;
 import java.util.Optional;
 
-@Dao
 public class UserDaoImpl implements UserDao {
     @Override
     public User create(User user) {
@@ -40,5 +38,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean delete(Long id) {
         return Storage.users.removeIf(o -> o.getId().equals(id));
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return Storage.users.stream().filter(u -> u.getLogin().equals(login)).findFirst();
     }
 }

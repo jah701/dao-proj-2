@@ -6,6 +6,7 @@ import internet.shop.lib.Service;
 import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
 import internet.shop.service.ShoppingCartService;
+import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -19,7 +20,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        shoppingCart.addProduct(product);
+        shoppingCart.addProduct(List.of(product));
         return shoppingCartDao.update(shoppingCart);
     }
 
