@@ -23,8 +23,7 @@ public class User {
     }
 
     public User(String name, String login, String password) {
-        this.name = name;
-        this.login = login;
+        this(login, password);
         this.password = password;
     }
 
@@ -110,5 +109,13 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", name='" + name + '\'' + ", login='" + login + '\''
                 + ", password='" + password + '\'' + '}';
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 }
