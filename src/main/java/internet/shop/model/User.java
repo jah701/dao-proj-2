@@ -58,11 +58,11 @@ public class User {
         this.roles = roles;
     }
 
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
+    public User(Long id, String name, String login, String password, byte[] salt) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+        this.password = password;
         this.salt = salt;
     }
 
@@ -110,5 +110,13 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", name='" + name + '\'' + ", login='" + login + '\''
                 + ", password='" + password + '\'' + '}';
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 }
