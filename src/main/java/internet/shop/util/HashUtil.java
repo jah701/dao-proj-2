@@ -20,7 +20,6 @@ public class HashUtil {
             MessageDigest messageDigest = MessageDigest.getInstance(SHA_512);
             messageDigest.update(salt);
             byte[] digest = messageDigest.digest(password.getBytes());
-
             for (byte b : digest) {
                 hashedPassword.append(String.format("%02x", b));
             }

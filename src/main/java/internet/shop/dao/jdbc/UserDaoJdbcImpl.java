@@ -85,7 +85,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String query = "SELECT * FROM users WHERE deleted = false;";
         List<User> users = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 User user = getUserFromResultSet(resultSet);
@@ -122,7 +122,7 @@ public class UserDaoJdbcImpl implements UserDao {
     public boolean delete(Long userId) {
         String query = "UPDATE users SET deleted = true WHERE user_id = ?;";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
