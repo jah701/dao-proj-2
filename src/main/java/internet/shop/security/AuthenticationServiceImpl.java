@@ -5,6 +5,7 @@ import internet.shop.lib.Inject;
 import internet.shop.lib.Service;
 import internet.shop.model.User;
 import internet.shop.service.UserService;
+import internet.shop.util.HashUtil;
 import java.util.Optional;
 
 @Service
@@ -15,8 +16,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String login, String password) throws AuthenticationException {
         Optional<User> userFromDb = userService.findByLogin(login);
-
-        if (userFromDb.isPresent() && userFromDb.get().getPassword().equals(password)) {
+        byte[] salt = userFromDb.get().getSalt();
+        String saltedPass = HashUtil.hashPassword(password, salt);
+        if (userFromDb.isPresent() && userFromDb.get().getPassword().equals(saltedPass)) {
             return userFromDb.get();
         }
         throw new AuthenticationException("Incorrect data entered");
