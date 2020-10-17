@@ -19,8 +19,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (userFromDb.isEmpty() || userFromDb.get().getSalt() == null) {
             throw new AuthenticationException("Incorrect data entered");
         }
-        byte[] salt;
-        salt = userFromDb.get().getSalt();
+        byte[] salt = userFromDb.get().getSalt();
         String saltedPass = HashUtil.hashPassword(password, salt);
         if (userFromDb.get().getPassword().equals(saltedPass)) {
             return userFromDb.get();
