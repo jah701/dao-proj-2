@@ -23,7 +23,7 @@ public class HashUtil {
             for (byte b : digest) {
                 hashedPassword.append(String.format("%02x", b));
             }
-        } catch (NoSuchAlgorithmException | NullPointerException e) {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Can't hash the password", e);
         }
         return hashedPassword.toString();
