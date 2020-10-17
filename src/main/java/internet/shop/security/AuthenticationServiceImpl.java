@@ -16,7 +16,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String login, String password) throws AuthenticationException {
         Optional<User> userFromDb = userService.findByLogin(login);
-        if (userFromDb.isEmpty() || userFromDb.get().getSalt() == null) {
+        if (userFromDb.isEmpty()) {
             throw new AuthenticationException("Incorrect data entered");
         }
         byte[] salt = userFromDb.get().getSalt();
