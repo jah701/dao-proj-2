@@ -4,6 +4,7 @@
     <title>Registration</title>
 </head>
 <body>
+<%@include file="./header.jsp" %>
 <h1>This is registration page!</h1>
 <h3 style="color:red">${message}</h3>
 <form method="post" action="${pageContext.request.contextPath}/users/registration">

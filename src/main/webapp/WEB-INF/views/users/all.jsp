@@ -5,6 +5,7 @@
     <title>All users</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h1>All users here</h1>
 <table class="table" border="1">
     <tr>

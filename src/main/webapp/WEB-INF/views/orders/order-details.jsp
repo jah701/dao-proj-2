@@ -4,6 +4,7 @@
     <title>Order details</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h1>Your order details</h1>
 <table border="1">
     <tr>

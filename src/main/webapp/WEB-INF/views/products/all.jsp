@@ -5,6 +5,7 @@
     <title>Products</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h1>All products in shop will be displayed here</h1>
 <table border="1">
     <tr>

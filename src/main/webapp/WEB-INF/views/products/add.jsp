@@ -4,6 +4,7 @@
     <title>Create you product</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h3 style="color:red">${errMessage}</h3>
 
 <form method="post" action="${pageContext.request.contextPath}/products/add">

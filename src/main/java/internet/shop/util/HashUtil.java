@@ -20,11 +20,10 @@ public class HashUtil {
             MessageDigest messageDigest = MessageDigest.getInstance(SHA_512);
             messageDigest.update(salt);
             byte[] digest = messageDigest.digest(password.getBytes());
-
             for (byte b : digest) {
                 hashedPassword.append(String.format("%02x", b));
             }
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException | NullPointerException e) {
             throw new RuntimeException("Can't hash the password", e);
         }
         return hashedPassword.toString();

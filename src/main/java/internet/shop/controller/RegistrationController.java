@@ -6,8 +6,6 @@ import internet.shop.model.ShoppingCart;
 import internet.shop.model.User;
 import internet.shop.service.ShoppingCartService;
 import internet.shop.service.UserService;
-import internet.shop.util.HashUtil;
-
 import java.io.IOException;
 import java.util.Set;
 import javax.servlet.ServletException;

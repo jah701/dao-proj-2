@@ -60,15 +60,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>inject-data</servlet-name>
-        <servlet-class>internet.shop.controller.InjectDataController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>inject-data</servlet-name>
-        <url-pattern>/inject-data</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>allProducts</servlet-name>
         <servlet-class>internet.shop.controller.product.GetAllProductsController</servlet-class>
     </servlet>
