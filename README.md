@@ -9,5 +9,5 @@ Technologies implemented:
   * Controller lever
   * Service layer
   * DAO layer
-  * Security layer: Authentication / Authtoruzation service, Password hashing
+  * Security layer: Authentication / Authtorization service, Password hashing
 - RDBMS: MySQL
