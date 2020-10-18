@@ -6,8 +6,8 @@ Technologies implemented:
 - JSP / Servlets
 - Bootstrap
 - Multilevel architecture:
-  Controller lever
-  Service layer
-  DAO layer
-  Security layer: Authentication / Authtoruzation service, Password hashing
+Controller lever
+Service layer
+DAO layer
+Security layer: Authentication / Authtoruzation service, Password hashing
 - RDBMS: MySQL
