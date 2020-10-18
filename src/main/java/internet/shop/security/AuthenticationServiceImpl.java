@@ -24,6 +24,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (userFromDb.get().getPassword().equals(saltedPass)) {
             return userFromDb.get();
         }
-        throw new AuthenticationException("Incorrect data entered");
+        throw new AuthenticationException("Something went wrong while logging in");
     }
 }
