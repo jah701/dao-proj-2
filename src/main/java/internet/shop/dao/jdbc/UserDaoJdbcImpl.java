@@ -42,7 +42,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String query = "INSERT INTO users(login, username, password, salt) VALUES (?, ?, ?, ?);";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                        query, PreparedStatement.RETURN_GENERATED_KEYS);
+                    query, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getName());
             statement.setString(3, user.getPassword());
@@ -136,7 +136,7 @@ public class UserDaoJdbcImpl implements UserDao {
         String userName = resultSet.getString("username");
         String password = resultSet.getString("password");
         byte[] salt = resultSet.getBytes("salt");
-        return new User(userId, login, userName, password, salt);
+        return new User(userId, userName, login, password, salt);
     }
 
     private User addRole(User user, Connection connection) {

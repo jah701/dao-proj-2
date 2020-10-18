@@ -5,6 +5,7 @@
     <title>User orders</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h1>User orders</h1>
 <c:forEach var="order" items="${orders}">
     <p>id = ${order.id}</p>

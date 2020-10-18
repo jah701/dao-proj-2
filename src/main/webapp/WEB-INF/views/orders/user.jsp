@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <c:forEach var="order" items="${orders}">
     <table border="1">
         <tr>

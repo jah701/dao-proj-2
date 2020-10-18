@@ -5,6 +5,7 @@
     <title>Shopping cart</title>
 </head>
 <body>
+<%@include file="../header.jsp" %>
 <h1>Here you can see your picked products</h1> <br> <br>
 <table border="1">
     <tr>

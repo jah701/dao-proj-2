@@ -16,11 +16,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String login, String password) throws AuthenticationException {
         Optional<User> userFromDb = userService.findByLogin(login);
+        if (userFromDb.isEmpty()) {
+            throw new AuthenticationException("Incorrect data entered");
+        }
         byte[] salt = userFromDb.get().getSalt();
         String saltedPass = HashUtil.hashPassword(password, salt);
-        if (userFromDb.isPresent() && userFromDb.get().getPassword().equals(saltedPass)) {
+        if (userFromDb.get().getPassword().equals(saltedPass)) {
             return userFromDb.get();
         }
-        throw new AuthenticationException("Incorrect data entered");
+        throw new AuthenticationException("Something went wrong while logging in");
     }
 }
