@@ -24,7 +24,8 @@ Technologies implemented:
   * Controller lever
   * Service layer
   * DAO layer
-  * Security layer: Authentication / Authorization service, Password hashing
+  * Security layer: Authentication / Authorization service
+- Password hashing
 - Apache Tomcat
 - RDBMS: MySQL
 - Bootstrap
