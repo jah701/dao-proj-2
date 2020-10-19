@@ -1,17 +1,18 @@
 *** DAO Project ***
 
 Implemented basic admin and user functionality like:
-* Admin:
+
+Admin:
 - add / delete products;
 - get all users;
 - get all orders;
 
-* User:
+User:
 - get user orders;
 - add/delete a product to/from shopping cart;
 - buy product;
 
-* Common: 
+Common: 
 - register;
 - login;
 - logout;
