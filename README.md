@@ -38,5 +38,4 @@ Common:
 - You have to add an admin manually.
 
 
-###### Author: ```Ruslan Moskovienko```
-###### Git: ```jah701```
+Author: [Ruslan Moskovienko](https://github.com/jah701)
