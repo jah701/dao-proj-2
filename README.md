@@ -1,4 +1,4 @@
-*** DAO Project ***
+# DAO Project 
 
 ## Implemented basic admin and user functionality like:
 
