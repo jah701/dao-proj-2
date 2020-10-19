@@ -1,6 +1,6 @@
 *** DAO Project ***
 
-Implemented basic admin and user functionality like:
+###Implemented basic admin and user functionality like:
 Admin:
 - add / delete products;
 - get all users;
@@ -37,4 +37,4 @@ Running the project:
 - You have to add an admin manually.
 
 Author: ```Ruslan Moskovienko```
-git: ```https://github.com/jah701```
+Git: ```jah701```
