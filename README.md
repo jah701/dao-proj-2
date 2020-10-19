@@ -1,4 +1,4 @@
-# DAO Project 
+# Internet shop # 
 
 ## Implemented basic admin and user functionality like:
 
