@@ -37,5 +37,6 @@ Common:
 - If you want to use the DB from this project use SQL in resources folder.
 - You have to add an admin manually.
 
+
 ###### Author: ```Ruslan Moskovienko```
 ###### Git: ```jah701```
