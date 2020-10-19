@@ -1,6 +1,6 @@
 *** DAO Project ***
 
-# Implemented basic admin and user functionality like:
+## Implemented basic admin and user functionality like:
 
 Admin:
 - add / delete products;
@@ -17,7 +17,7 @@ Common:
 - login;
 - logout;
 
-# Technologies implemented:
+## Technologies implemented:
 - Maven
 - JDBC
 - JSP / Servlets / JSTL
@@ -31,7 +31,7 @@ Common:
 - RDBMS: MySQL
 - Bootstrap
 
-# Running the project:
+## Running the project:
 - Fork and clone this repository to your project. 
 - Configure Tomcat and install MySQL (in case you want to you other DBMS you have to change driver)
 - If you want to use the DB from this project use SQL in resources folder.
